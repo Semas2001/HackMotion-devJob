@@ -14,5 +14,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         <title>HackMotion</title>
 </head>
-<body>
-    <header>Hackmotion</header>
+<body class = "bg-[#E6E6E6] justify-center items-center w-[100%]">
+    <div class='py-2 pl-5'>
+    <header class="flex container">
+        <img 
+            src="<?php echo get_template_directory_uri(); ?>/public/Assets/images/Logo.png" 
+            alt="Logo" 
+            class="h-6 w-auto"
+        />
+    </header>
+</div>
+
