@@ -29,11 +29,12 @@ Step 5: Install and Activate the Theme in WordPress
     Activate your custom theme to see it in action.
 
 Step 6: Activate the theme plugins
-    in http://localhost:8000/wordpress/wp-amdin go to plugins  and activate the analytics plugin to track what the user does on the website.        (P.s to test, you must use Postman) .
+    in http://localhost:8000/wp-amdin go to plugins  and activate the analytics plugin to track what the user does on the website.        (P.s to test, you must use Postman) .
 
 Step  7: Test the Website
     Open a new browser tab and navigate to http://localhost:8000 to see your custom theme
-    you can test the dynamic title of the page by  changing the url to http://localhost:8000/90 or /100.
+    you can test the dynamic title of the page by  changing the url to http://localhost:8000/90 or /100. (for the links to work accordingly, you must go to wordpress settings -  permalinks and select Post Name then save the changes)
+
     test the video progress bar and accordion by watching the video. the video is set to autoplay and loop.
 
 Step 6: Shut Down Docker
