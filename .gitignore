@@ -1,0 +1,51 @@
+# Ignore WordPress core files and directories
+/wp-admin/
+/wp-includes/
+wp-config.php
+
+# Ignore WordPress content files except for the theme folder
+/wp-content/*
+!/wp-content/themes/
+/wp-content/themes/*
+
+# Ignore everything inside the theme except for essential files
+/wp-content/themes/your-theme-name/node_modules/
+# Ignore node_modules in case you're using a build setup
+
+/wp-content/themes/your-theme-name/*.log
+/wp-content/themes/your-theme-name/*.sql
+/wp-content/themes/your-theme-name/*.sql.gz
+/wp-content/themes/your-theme-name/.DS_Store
+/wp-content/themes/your-theme-name/.sass-cache
+/wp-content/themes/your-theme-name/*.sublime-project
+/wp-content/themes/your-theme-name/*.sublime-workspace
+/wp-content/themes/your-theme-name/*.zip
+/wp-content/themes/your-theme-name/.vscode/
+# Ignore VS Code settings
+/wp-content/themes/your-theme-name/.idea/
+# Ignore IDE settings
+/wp-content/themes/your-theme-name/*.env
+/wp-content/themes/your-theme-name/.env.*
+# Ignore environment files if applicable
+
+# Ignore compiled assets if you're using a build system (e.g., Tailwind CSS or Sass/SCSS)
+wp-content/themes/your-theme-name/dist/
+wp-content/themes/your-theme-name/build/
+/wp-content/themes/your-theme-name/*.map
+
+# Ignore Composer vendor directory if using Composer in theme development
+/wp-content/themes/your-theme-name/vendor/
+
+# Ignore npm and yarn files if using a JS build setup
+/wp-content/themes/your-theme-name/package-lock.json
+/wp-content/themes/your-theme-name/yarn.lock
+
+# Ignore other generated files
+/wp-content/uploads/
+/uploads/
+uploads/
+
+# Ignore temporary or backup files
+*.bak
+*.tmp
+*~
