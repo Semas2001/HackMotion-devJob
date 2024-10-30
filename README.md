@@ -1,38 +1,41 @@
-# HackMotion-devJob
+Prerequisites
 
+First, ensure Docker and Docker Compose are installed on your computer. You can download Docker from the official Docker website and follow their instructions to install Docker Compose as well.
+Steps to Set Up WordPress with Your Custom Theme
 
-Create a local WordPress setup on Docker, with a custom theme. In this theme set a new page template in which you have to create the following design - Figma
+Step 1: Download and Access the Project
 
-You can choose the front-end technology of your choice, just keep in mind that the majority of the content should be rendered on the server for SEO purposes. It is important that the front end is responsive and adjusts when scaling. 
+    Clone the project repository to your computer.
+    Navigate to the project directory where the files are located.
 
-You will find all the assets in this folder - Full-Stack e-commerce Developer Test Task 
+In your project folder, make sure you have a directory structure that looks like this:  
+    docker-compose.yaml
+    wp-content/themes/custom-landing-page
 
-Font can be accessed here - https://fonts.google.com/specimen/IBM+Plex+Sans
+Step 3: Configure Docker Compose
 
-Dynamic content 
+    in VS  Code, open the terminal and run the following command to build the Docker image and start the containers: 
+    docker-compose up -d
 
-As this is a dynamic landing page we would display it after the user has finished a quiz, we want to adjust the content accordingly. In the hero section of the page, you'll see a dynamic string - “We have put together a swing improvement solution to help you [break 80]”. The part in brackets is dynamic, there are 4 possible options: 
-Break Par 
-Break 80 
-Break 90 
-Break 100
-This parameter should be passed as a URL parameter. 
+Step 4: Start WordPress with Docker
 
-Interactive Video 
+    Now, start the Docker environment. This will run both the WordPress and database containers, and you should be able to open a browser and go to http://localhost:8000 to access WordPress.
 
-The second section of the website includes a video with 3 timestamps. Your goal is to create a dynamic video progress line on the side. We also have 3 collapsable cards that open and close according to the timestamps. Our goal with this section is to get the person to watch the video, by providing an easy to digest content on the side. 
+Step 5: Install and Activate the Theme in WordPress
 
-Timestamps: 
-5 seconds (Static top drill)
-14 seconds (Dynamic top drill)
-24 seconds (Top full swing challenge)
+    Open http://localhost:8000 in your browser.
+    Complete the initial WordPress setup by following the on-screen instructions.
+    Once WordPress is set up, go to the Appearance > Themes section.
+    Activate your custom theme to see it in action.
 
-Analytics 
+Step 6: Activate the theme plugins
+    in http://localhost:8000/wordpress/wp-amdin go to plugins  and activate the analytics plugin to track what the user does on the website.        (P.s to test, you must use Postman) .
 
-A big part of improving our sales page effectiveness is data gathering. We want to collect two events on this page. One should be the page view event registered in the backend, the other is a front-end interaction event on the front-end. Both events should share a user ID, and include other relevant parameters like page URL, timestamp, browser information, device information, and User IP. For some parameters, it could be easier to collect this information in the back-end for others on the front-end. Structure the event data so that user parameters can be later combined from the elements to create a full user overview. 
+Step  7: Test the Website
+    Open a new browser tab and navigate to http://localhost:8000 to see your custom theme
+    you can test the dynamic title of the page by  changing the url to http://localhost:8000/90 or /100.
+    test the video progress bar and accordion by watching the video. the video is set to autoplay and loop.
 
-For the scope of this task, it is up to you to choose where and how to store the data. 
+Step 6: Shut Down Docker
 
-Track and store these two events: 
-Page View
-Full video watch event 
+When you’re done, you can stop WordPress by running the Docker shutdown command, which will stop and remove the containers.
