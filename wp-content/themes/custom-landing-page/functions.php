@@ -19,4 +19,18 @@ function custom_query_vars($vars) {
 }
 add_filter('query_vars', 'custom_query_vars');
 
+function handle_analytics_event(WP_REST_Request $request) {
+    $data = $request->get_json_params();
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'analytics';
+    $wpdb->insert($table_name, [
+        'event_type' => $data['eventType'],
+        'user_id' => $data['userId'],
+        'page_url' => $data['pageUrl'],
+        'timestamp' => $data['timestamp'],
+        'device_info' => json_encode($data['deviceInfo']),
+        'user_ip' => $_SERVER['REMOTE_ADDR'],
+    ]);
 
+    return new WP_REST_Response('Event logged', 200);
+}
