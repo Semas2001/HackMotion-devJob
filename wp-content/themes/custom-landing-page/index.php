@@ -59,7 +59,7 @@ $dynamic_number = get_dynamic_number();
         <hr class="my-4 border-t border-gray-300">
         <div class="flex flex-col md:flex-row md:flex-1 gap-4">
             <div class="flex-1">
-                <video id="impactTrainingVideo" class="w-full" autoplay loop loading="lazy">
+                <video id="impactTrainingVideo" class="w-full" autoplay loop mute loading="lazy">
                     <source src="<?php echo get_template_directory_uri(); ?>/public/Assets/Videos/Impact-Drill.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -75,7 +75,7 @@ $dynamic_number = get_dynamic_number();
             <div class="w-[100%] md:w-[30%]">
                 <div class="flex flex-col items-start">
                     <div class="mb-2">
-                        <button onclick="toggleCard('card1')" class="accordion-button text-[#5773FF] text-md lg:text-xl xl:text-3xl font-medium text-left w-full p-4 rounded-md focus:outline-none flex items-center" disabled>
+                        <button onclick="toggleCard('card1')" class="accordion-button text-[#5773FF] text-md lg:text-xl xl:text-3xl font-medium text-left w-full p-4 rounded-md focus:outline-none flex items-center">
                             <i class="chevron fas fa-chevron-down mr-2 transition-transform duration-300"></i>Static top drill
                         </button>
                         <div id="card1" class="accordion-content hidden p-4 rounded-md">
@@ -84,7 +84,7 @@ $dynamic_number = get_dynamic_number();
                         <hr class="my-4 border-t border-gray-300">
                     </div>
                     <div class="mb-2">
-                        <button onclick="toggleCard('card2')" class="accordion-button text-[#5773FF] text-md lg:text-xl xl:text-3xl font-medium text-left w-full p-4 rounded-md focus:outline-none flex items-center" disabled>
+                        <button onclick="toggleCard('card2')" class="accordion-button text-[#5773FF] text-md lg:text-xl xl:text-3xl font-medium text-left w-full p-4 rounded-md focus:outline-none flex items-center">
                             <i class="chevron fas fa-chevron-down mr-2 transition-transform duration-300"></i>Dynamic top drill
                         </button>
                         <div id="card2" class="accordion-content hidden p-4 rounded-md">
@@ -93,7 +93,7 @@ $dynamic_number = get_dynamic_number();
                         <hr class="my-4 border-t border-gray-300">
                     </div>
                     <div>
-                        <button onclick="toggleCard('card3')" class="accordion-button text-[#5773FF] text-md lg:text-xl xl:text-3xl font-medium text-left w-full p-4 rounded-md focus:outline-none flex items-center" disabled>
+                        <button onclick="toggleCard('card3')" class="accordion-button text-[#5773FF] text-md lg:text-xl xl:text-3xl font-medium text-left w-full p-4 rounded-md focus:outline-none flex items-center">
                             <i class="chevron fas fa-chevron-down mr-2 transition-transform duration-300"></i>Top full swing challenge
                         </button>
                         <div id="card3" class="accordion-content hidden p-4 rounded-md">
@@ -113,36 +113,49 @@ $dynamic_number = get_dynamic_number();
     const horizontalProgressBar = document.getElementById('horizontal-progress-bar');
     const accordionButtons = document.querySelectorAll('.accordion-button');
     const initialHeight = 5;
-    const expansionPoints = [5, 14, 23, 32];
-    
+    const expansionPoints = [5, 14, 23, 32];  // Points at which to adjust progress
+
+    // Event listener for video time update
     video.addEventListener('timeupdate', () => {
         const currentTime = video.currentTime;
         let maxHeight = initialHeight;
 
+        // Update progress bar based on current time in video
         expansionPoints.forEach((point, index) => {
             if (currentTime >= point) {
-                const percentage = initialHeight + ((index + 1) * (90 - initialHeight) / expansionPoints.length);
-                maxHeight = Math.min(percentage, 100); 
+                maxHeight = Math.min(initialHeight + ((index + 1) * (90 - initialHeight) / expansionPoints.length), 100);
             }
         });
 
         progressLine.style.height = `${maxHeight}%`;
         horizontalProgressBar.style.width = `${maxHeight}%`;
 
-        if (currentTime >= 5 && currentTime < 14) toggleCard('card1', true);
-        else if (currentTime >= 14 && currentTime < 23) toggleCard('card1', false), toggleCard('card2', true);
-        else if (currentTime >= 23) toggleCard('card2', false), toggleCard('card3', true);
-        else if (currentTime <= 1) toggleCard('card3', false);
-    });
-
-    video.addEventListener('ended', () => {
-        accordionButtons.forEach(button => button.removeAttribute('disabled'));
+        if (currentTime >= 5 && currentTime < 14) {
+            toggleCard('card1', true);
+            toggleCard('card2', false); 
+            toggleCard('card3', false); 
+        } else if (currentTime >= 14 && currentTime < 23) {
+            toggleCard('card1', false);
+            toggleCard('card2', true); 
+            toggleCard('card3', false);
+        } else if (currentTime >= 23) {
+            toggleCard('card1', false); 
+            toggleCard('card2', false); 
+            toggleCard('card3', true);
+        } else if (currentTime <= 1) {
+            toggleCard('card3', false); 
+        }
     });
 
     function toggleCard(cardId, show) {
         const card = document.getElementById(cardId);
-        card.classList.toggle('hidden', !show);
+        if (show) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
     }
+
 </script>
 
 <?php get_footer(); ?>

@@ -1,7 +1,6 @@
 # Ignore WordPress core files and directories
 /wp-admin/
 /wp-includes/
-wp-config.php
 
 # Ignore WordPress content files except for the theme folder
 /wp-content/*
